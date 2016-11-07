@@ -1,6 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
 import http.client as httplib
-import traceback
 import urllib
 import json
 import pandas as pd

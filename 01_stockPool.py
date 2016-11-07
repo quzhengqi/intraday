@@ -20,6 +20,7 @@ client.init('e97fd48ed3ada633e20848c501fa018db3a52734767bfedc20ce0f1ac3aea723')
 url = '/api/equity/getEqu.json?field=&ticker=&secID=&equTypeCD=A&listStatusCD=L'
 code, result = client.getData(url)
 stocklist = result['ticker'].tolist()
+
  
 import time
 t1=time.time()
