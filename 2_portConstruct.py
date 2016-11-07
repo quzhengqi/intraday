@@ -113,7 +113,7 @@ def handle_data_daily(data,varDict,TimeBegin,TimeEnd,benchmark_name='000300.SH',
         #筛选数据
         filte = data_monthly[['Status','maxupordown'],date,:]
         ma1 = ma[ma['tradeDate']==date].dropna()
-        ma1['ma_sign'] = list(map(lambda x,y,z:((x>=y) and( y>=z))+0,ma1['MA5'],ma1['MA10'],ma1['MA20']))
+        ma1['ma_sign'] = list(map(lambda x,y,z:((x>=y) and( y>=z))+0,ma1['MA5'],ma1['MA10'],ma1['MA20'])) #对于技术指标的筛选
         filte_ma = ma1[ma1['ma_sign']==1]['secID'].tolist()
         filte = filte.ix[filte_ma]  #找出那些多头排列的股票
         status_list = filte[filte['Status']=='交易' ]
@@ -179,7 +179,7 @@ def main():
     TimeEnd="20160930"
     
     varDict={}
-    varDict['Ana_list']=["MV_S",'distance_turnover_long_median_r_s','distance_swing_long_median_r_s','volumeratio_r_s'] 
+    varDict['Ana_list']=["MV_S",'distance_turnover_short_median_r_s','distance_swing_short_median_r_s','volumeratio_r_s'] 
     
     alpha_list =[]
     for i in varDict.keys():
@@ -187,8 +187,9 @@ def main():
         
     data=initialize()
 #    wp = data['data']
-    res_long = handle_data_daily(data,varDict,TimeBegin,TimeEnd,benchmark_name='000300.SH')
-    blotter = res['blotter_mf']
+    res_long1 = handle_data_daily(data,varDict,TimeBegin,TimeEnd,benchmark_name='000905.SH')
+    blotter1 = res_long1['blotter_mf']
+    blotter
     b1 = pd.Series(blotter['20160701'])
     return res
     
